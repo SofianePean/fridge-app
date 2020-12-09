@@ -1,28 +1,49 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <Header />
+    <Table />
+    <Modals/>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Header from './components/Header';
+import Table from './components/Table';
+import Modals from './components/Modals/Modals.vue';
+import axios from 'axios';
+import {baseURL} from './config';
 
 export default {
   name: 'App',
+  data() {
+    return {
+      dataCategoriesSelect: null
+    }
+  },
   components: {
-    HelloWorld
-  }
+    Header,
+    Table,
+    Modals
+  },
+  methods : {
+    fetchDataCategories: function () {
+      console.log('je passe par la')
+      axios
+      .get(`${baseURL}/categories`)
+      .then((res) => {
+        this.$store.commit('SET_CATEGORIES', res.data)
+      })
+      .catch(err => console.log(err))
+    },
+  },
+  created () {
+      this.fetchDataCategories()
+  },
 }
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap');
+
+
 </style>
