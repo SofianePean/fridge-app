@@ -13,11 +13,13 @@ import Modals from './components/Modals/Modals.vue';
 import axios from 'axios';
 import {baseURL} from './config';
 
+
 export default {
   name: 'App',
   data() {
     return {
-      dataCategoriesSelect: null
+      dataCategoriesSelect: null,
+      timestamp: ''
     }
   },
   components: {
@@ -27,7 +29,6 @@ export default {
   },
   methods : {
     fetchDataCategories: function () {
-      console.log('je passe par la')
       axios
       .get(`${baseURL}/categories`)
       .then((res) => {
@@ -35,9 +36,15 @@ export default {
       })
       .catch(err => console.log(err))
     },
+    getNow: function() {
+    const today = new Date();
+    const date =today.getDate()+'-'+ (today.getMonth()+1)+'-'+ today.getFullYear();
+    this.$store.dispatch('getCurrentDate', date)
+    }
   },
   created () {
-      this.fetchDataCategories()
+      this.fetchDataCategories();
+      this.getNow();
   },
 }
 </script>

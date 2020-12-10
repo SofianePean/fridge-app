@@ -64,7 +64,7 @@
             id: '',
             name: ''
           },
-          expirationdate: '12/05/2020',
+          expirationdate: '',
           name: '',
           category_id: '',
           quantity: '',

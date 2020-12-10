@@ -6,6 +6,7 @@ export default new Vuex.Store({
     state: {
         dataCategories: [],
         items: [],
+        currentDate: ''
     },
     mutations: {
         SET_ITEMS (state, items) {
@@ -16,6 +17,9 @@ export default new Vuex.Store({
         },
         ADD_ITEM (state, item) {
             state.items.push(item)
+        },
+        GET_CURRENT_DATE( state, date) {
+            state.currentDate = date
         }
     },
     actions: {
@@ -25,6 +29,9 @@ export default new Vuex.Store({
         addItem(context, item) {
             context.commit('ADD_ITEM', item)
         },
+        getCurrentDate(context, date) {
+            context.commit('GET_CURRENT_DATE', date)
+        }
     },
     getters: {
         items: state => {return state.items}
