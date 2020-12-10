@@ -93,7 +93,12 @@
             quantitypackage: res.data.quantitypackage,
           })
           console.log(res)
-
+          this.$notify({
+            group: 'foo',
+            title: 'Important message',
+            text: 'Aliment ajouté !',
+            width: '500px'
+          })
         })
         .catch(err => console.log(err))
       }

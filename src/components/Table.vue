@@ -1,5 +1,6 @@
 <template>
     <div class="my-5 px-2">
+      <notifications group="foo" />
       <mdb-tbl>
         <mdb-tbl-head color="black" textWhite>
           <tr>
@@ -59,6 +60,12 @@ export default {
           console.log(res)
         var index = this.itemsFood.indexOf(item)
         this.itemsFood.splice(index, 1)
+        this.$notify({
+          group: 'foo',
+          title: 'Important message',
+          text: `${res.data}`,
+          width: '500px'
+        })
         })
         .catch(err => console.log(err))
 
